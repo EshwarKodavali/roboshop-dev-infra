@@ -22,6 +22,6 @@ data "aws_ssm_parameter" "mongodb_sg_id" {
   name            = "/${var.project}/${var.env}/mongodb_sg_id"
 }
 
-data "aws_ssm_parameter" "database_subnet_id" {
-  name            = "/${var.project}/${var.env}/database_subnet_id"
+data "aws_ssm_parameter" "database_subnet_ids" {
+  name            = "/${var.project}/${var.env}/database_subnet_ids"
 }

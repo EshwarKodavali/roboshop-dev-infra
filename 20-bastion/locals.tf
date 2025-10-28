@@ -7,5 +7,5 @@ locals {
         Terraform = "true"
     }
     common_name_suffix = "${var.project}-${var.env}-bastion"
-    public_subnet_id = split("," , data.aws_ssm_parameter.public_subnet_id.value)[0]
+    public_subnet_ids = split("," , data.aws_ssm_parameter.public_subnet_ids.value)[0]
 }

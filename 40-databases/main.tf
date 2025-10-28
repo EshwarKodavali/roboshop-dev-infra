@@ -6,7 +6,7 @@ resource "aws_instance" "mongodb" {
     tags = merge(
         local.common_tags,
         {
-            Name=local.common_name_suffix
+            Name="${local.common_name_suffix}-mongodb"
         }
     
     )
@@ -47,7 +47,7 @@ resource "aws_instance" "redis" {
     tags = merge(
         local.common_tags,
         {
-            Name=local.common_name_suffix
+            Name="${local.common_name_suffix}-redis"
         }
     
     )
@@ -88,7 +88,7 @@ resource "aws_instance" "rabbitmq" {
     tags = merge(
         local.common_tags,
         {
-            Name=local.common_name_suffix
+            Name="${local.common_name_suffix}-rabbitmq"
         }
     
     )

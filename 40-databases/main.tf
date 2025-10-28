@@ -77,3 +77,44 @@ provisioner "remote-exec" {
   ]
 }
 }
+
+#rabbitmq
+
+resource "aws_instance" "rabbitmq" {
+    ami           = local.ami_id
+    instance_type = "t3.micro"
+    vpc_security_group_ids = [local.rabbitmq_sg_id]
+    subnet_id = local.database_subnet_id
+    tags = merge(
+        local.common_tags,
+        {
+            Name=local.common_name_suffix
+        }
+    
+    )
+}
+
+resource "terraform_data" "rabbitmq" {
+  triggers_replace = [
+    aws_instance.rabbitmq.id # This trigger ensures the script runs every time Terraform applies
+  ]
+
+  connection {
+    type     = "ssh"
+    user     = "ec2-user"
+    password = "DevOps321"
+    host     = aws_instance.redis.private_ip
+  }
+     # terraform copies this file to mongodb server
+      provisioner "file" {
+        source      = "bootstrap.sh" 
+        destination = "/tmp/bootstrap.sh"
+      }
+
+provisioner "remote-exec" {
+  inline = [
+    "chmod +x /tmp/bootstrap.sh",
+    "sudo sh /tmp/bootstrap.sh rabbitmq"
+  ]
+}
+}

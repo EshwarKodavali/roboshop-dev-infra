@@ -11,3 +11,28 @@ resource "aws_instance" "catalogue" {
     
     )
 }
+
+resource "terraform_data" "catalogue" {
+  triggers_replace = [
+    aws_instance.catalogue.id # This trigger ensures the script runs every time Terraform applies
+  ]
+
+  connection {
+    type     = "ssh"
+    user     = "ec2-user"
+    password = "DevOps321"
+    host     = aws_instance.catalogue.private_ip
+  }
+     # terraform copies this file to mongodb server
+      provisioner "file" {
+        source      = "catalogue.sh" 
+        destination = "/tmp/catalogue.sh"
+      }
+
+provisioner "remote-exec" {
+  inline = [
+    "chmod +x /tmp/catalogue.sh",
+    "sudo sh /tmp/catalogue.sh catalogue ${var.env}"
+  ]
+}
+}

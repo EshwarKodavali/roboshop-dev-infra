@@ -3,6 +3,7 @@ resource "aws_instance" "this" {
     instance_type = "t3.micro"
     vpc_security_group_ids = [local.bastion_sg_id]
     subnet_id = local.public_subnet_ids
+    iam_instance_profile = aws_iam_instance_profile.bastion.name
     user_data = file("bastion.sh")
     tags = merge(
         local.common_tags,
@@ -11,4 +12,9 @@ resource "aws_instance" "this" {
         }
     
     )
+}
+
+resource "aws_iam_instance_profile" "bastion" {
+  name = "bastion"
+  role = "BastionTerraformadmin"
 }

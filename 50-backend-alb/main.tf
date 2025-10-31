@@ -32,3 +32,16 @@ resource "aws_lb_listener" "front_end" {
     }
   }
 }
+
+resource "aws_route53_record" "backend_alb" {
+  zone_id = var.zone_id
+  name    = "*.backend-alb-${var.env}.${var.domain_name}"
+  type    = "A" # Or "AAAA" for IPv6
+  
+  alias {
+     # These are ALB details, not our domain details
+    name                   = aws_lb.backend_alb.dns_name # DNS name of the target resource
+    zone_id                = aws_lb.backend_alb.zone_id  # Hosted Zone ID of the target resource
+    evaluate_target_health = true # Optional: Set to true for health checks
+  }
+}

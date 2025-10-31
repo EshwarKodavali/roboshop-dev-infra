@@ -5,3 +5,6 @@ variable "project" {
 variable "env" {
     default = "dev"
 }
+variable "domain_name" {
+    default = "eshwar.fun"
+}

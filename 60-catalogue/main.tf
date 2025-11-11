@@ -11,7 +11,7 @@ resource "aws_instance" "catalogue" {
     
     )
 }
-
+#ansible configuration
 resource "terraform_data" "catalogue" {
   triggers_replace = [
     aws_instance.catalogue.id # This trigger ensures the script runs every time Terraform applies

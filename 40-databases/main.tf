@@ -182,7 +182,7 @@ resource "aws_route53_record" "redis" {
   name    = "redis-${var.env}.${var.domain_name}" # redis-dev.eshwar.fun
   type    = "A"
   ttl     = 1
-  records = [aws_instance.mongodb.private_ip]
+  records = [aws_instance.redis.private_ip]
   allow_overwrite = true
 }
 
@@ -191,7 +191,7 @@ resource "aws_route53_record" "rabbitmq" {
   name    = "rabbitmq-${var.env}.${var.domain_name}" # rabbitmq-dev.eshwar.fun
   type    = "A"
   ttl     = 1
-  records = [aws_instance.mongodb.private_ip]
+  records = [aws_instance.rabbitmq.private_ip]
   allow_overwrite = true
 }
 
@@ -200,6 +200,6 @@ resource "aws_route53_record" "mysql" {
   name    = "mysql-${var.env}.${var.domain_name}" # mysql-dev.eshwar.fun
   type    = "A"
   ttl     = 1
-  records = [aws_instance.mongodb.private_ip]
+  records = [aws_instance.mysql.private_ip]
   allow_overwrite = true
 }

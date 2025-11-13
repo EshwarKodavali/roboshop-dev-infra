@@ -18,6 +18,7 @@ variable "sg_names" {
         "bastion",
         # frontend load balencer
         "frontend_alb",
-        "backend_alb"
+        "backend_alb",
+        "open_vpn"
         ]
 }

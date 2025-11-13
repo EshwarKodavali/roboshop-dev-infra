@@ -44,3 +44,7 @@ data "aws_ssm_parameter" "shipping_sg_id" {
 data "aws_ssm_parameter" "frontend_sg_id" {
   name            = "/${var.project}/${var.env}/frontend_sg_id"
 }
+
+data "aws_ssm_parameter" "open_vpn_sg_id" {
+  name            = "/${var.project}/${var.env}/open_vpn_sg_id"
+}

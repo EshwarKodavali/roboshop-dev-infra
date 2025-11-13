@@ -14,4 +14,27 @@ locals {
     frontend_sg_id = data.aws_ssm_parameter.frontend_sg_id.value
     open_vpn_sg_id = data.aws_ssm_parameter.open_vpn_sg_id.value
 
+    vpn_ingress_rules = {
+        mysql ={
+            sg_id = local.mysql_sg_id
+            port = 22
+        }
+          rabbitmq ={
+            sg_id = local.rabbitmq_sg_id
+            port = 22
+        }
+          redis ={
+            sg_id = local.redis_sg_id
+            port = 22
+        }
+          mongodb ={
+            sg_id = local.mongodb_sg_id
+            port = 22
+        }
+          backend_alb ={
+            sg_id = local.backend_alb_sg_id
+            port = 80
+        }
+    }
+
 }

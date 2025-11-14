@@ -4,7 +4,7 @@ data "aws_ami" "joindevops" {
 
   filter {
     name   = "name"
-    values = ["OpenVPN Access Server Community Image-8fbe3379-*"]
+    values = ["OpenVPN Access Server Community Image-8fbe3379-63b6-43e8-87bd-0e93fd7be8f3"]
   }
 
   filter {

@@ -35,6 +35,18 @@ locals {
             sg_id = local.backend_alb_sg_id
             port = 80
         }
+          user ={
+            sg_id = local.user_sg_id
+            port = 22
+        }
+            cart ={
+            sg_id = local.cart_sg_id
+            port = 22
+        }
+            payment ={
+            sg_id = local.payment_sg_id
+            port = 22
+        }
     }
 
 }
